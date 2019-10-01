@@ -26,8 +26,6 @@ class Classroom(models.Model):
     state_room = models.BooleanField()                  # 教室状态：是否可用
     comment_room = models.CharField(max_length=64, null=True)   # 备注信息
 
-# 培训课程信息表
-
 
 # 职位信息表
 class Positions(models.Model):
