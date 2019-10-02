@@ -10,7 +10,7 @@ class Campus(models.Model):
     name_cam = models.CharField(max_length=32)          # 校区名字
     address_cam = models.CharField(max_length=64)       # 校区地址
     phone_cam = models.CharField(max_length=16)         # 校区联系电话
-    supervisor_cam = models.ForeignKey('Employee', on_delete=models.PROTECT)      # 校区负责人
+    supervisor_cam = models.ForeignKey('Employee', on_delete=models.PROTECT, blank=True)      # 校区负责人
     comment_cam = models.CharField(max_length=256, null=True)   # 备注信息
 
 # 校区教室信息表
@@ -20,8 +20,8 @@ class Classroom(models.Model):
 
     id_room = models.AutoField(primary_key=True)        # 教室索引id
     name_room = models.CharField(max_length=32)         # 教室名字
-    campus_room = models.ForeignKey('Campus', on_delete=models.CASCADE)           # 教室所在校区
-    warden_room = models.ForeignKey('Employee', on_delete=models.PROTECT)         # 教室管理员
+    campus_room = models.ForeignKey(Campus, on_delete=models.CASCADE)           # 教室所在校区
+    warden_room = models.ForeignKey('Employee', on_delete=models.PROTECT, blank=True)         # 教室管理员
     content_room = models.SmallIntegerField()           # 教室的座位容量
     state_room = models.BooleanField()                  # 教室状态：是否可用
     comment_room = models.CharField(max_length=64, null=True)   # 备注信息
@@ -51,6 +51,7 @@ class Lessons(models.Model):
     version_les = models.CharField(max_length=8, null=True)     # 课件版本
     comment_les = models.CharField(max_length=64, null=True)    # 备注信息
 
+'''
 # 职位信息表
 class Positions(models.Model):
     code_pos = models.CharField(max_length=8, primary_key=True)
@@ -59,13 +60,14 @@ class Positions(models.Model):
 
     class Meta:
         db_table = 'positions'
+'''
 
 # 部门信息表
 class Departments(models.Model):
     code_dep = models.CharField(max_length=8, primary_key=True)
     name_dep = models.CharField(max_length=16, unique=True)
-    supervisor_dep = models.CharField(max_length=8, null=True)
-    superior_dep = models.CharField(max_length=8, null=True)
+    supervisor_dep = models.ForeignKey('Employee', on_delete=models.PROTECT, null=True, blank=True)
+    superior_dep = models.CharField(max_length=8, null=True, blank=True)
     duty_dep = models.CharField(max_length=128)
 
     class Meta:
@@ -73,6 +75,7 @@ class Departments(models.Model):
 
 # 员工信息表
 class Employee(models.Model):
+    id_emp = models.AutoField(primary_key=True)
     name_emp = models.CharField(max_length=32)
     id_num_emp = models.CharField(max_length=18, unique=True)
     tel_num_emp = models.CharField(max_length=12, unique=True)
@@ -80,12 +83,13 @@ class Employee(models.Model):
     entry_date_emp = models.DateField()
     ecp_emp = models.CharField(max_length=16, null=True)
     ecpt_emp = models.CharField(max_length=12, null=True)
-    email_emp = models.CharField(max_length=64, null=True)
+    email_emp = models.EmailField(blank=True)
     wechat_emp = models.CharField(max_length=64, null=True)
     address_emp = models.CharField(max_length=128, null=True)
 
-    position = models.ForeignKey('Positions', on_delete=models.CASCADE)
+    # position = models.ForeignKey('Positions', on_delete=models.CASCADE)
     department = models.ForeignKey('Departments', on_delete=models.CASCADE)
+    comment_emp = models.CharField(max_length=64, null=True)
 
     class Meta:
         db_table = 'employee'
