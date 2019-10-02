@@ -1,2 +1,2 @@
 # xhk_crm
-teaching management system
+This is a Django project of teaching management system.
