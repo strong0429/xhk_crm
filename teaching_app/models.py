@@ -7,11 +7,15 @@ class Campus(models.Model):
         db_table = 'campus'
 
     id_cam = models.AutoField(primary_key=True)         # 校区索引id
-    name_cam = models.CharField(max_length=32)          # 校区名字
-    address_cam = models.CharField(max_length=64)       # 校区地址
-    phone_cam = models.CharField(max_length=16)         # 校区联系电话
-    supervisor_cam = models.ForeignKey('Employee', on_delete=models.PROTECT, blank=True)      # 校区负责人
-    comment_cam = models.CharField(max_length=256, null=True)   # 备注信息
+    name_cam = models.CharField('名字', max_length=32)          # 校区名字
+    address_cam = models.CharField('地址', max_length=64)       # 校区地址
+    phone_cam = models.CharField('电话', max_length=16)         # 校区联系电话
+    supervisor_cam = models.ForeignKey('Employee', on_delete=models.PROTECT, \
+        null=True, blank=True, verbose_name='主管')      # 校区负责人
+    comment_cam = models.CharField('备注', max_length=256, null=True, blank=True)   # 备注信息
+
+    def __str__(self):
+        return f'{self.name_cam}, Tel: {self.phone_cam}'
 
 # 校区教室信息表
 class Classroom(models.Model):
@@ -64,11 +68,12 @@ class Positions(models.Model):
 
 # 部门信息表
 class Departments(models.Model):
-    code_dep = models.CharField(max_length=8, primary_key=True)
-    name_dep = models.CharField(max_length=16, unique=True)
-    supervisor_dep = models.ForeignKey('Employee', on_delete=models.PROTECT, null=True, blank=True)
-    superior_dep = models.CharField(max_length=8, null=True, blank=True)
-    duty_dep = models.CharField(max_length=128)
+    code_dep = models.CharField('代码', max_length=8, primary_key=True)
+    name_dep = models.CharField('名字', max_length=16, unique=True)
+    supervisor_dep = models.ForeignKey('Employee', on_delete=models.PROTECT, \
+        null=True, blank=True, verbose_name='主管')
+    superior_dep = models.CharField('上级部门', max_length=8, null=True, blank=True)
+    duty_dep = models.CharField('职责', max_length=128)
 
     class Meta:
         db_table = 'departments'
