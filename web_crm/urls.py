@@ -25,5 +25,5 @@ urlpatterns = [
 
 urlpatterns += [
     path('teaching_app/', include('teaching_app.urls')),
-    path('', RedirectView.as_view(url='/teaching_app/', permanent=True)),
+    # path('', RedirectView.as_view(url='/teaching_app/', permanent=True)),
 ]
