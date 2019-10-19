@@ -26,7 +26,7 @@ def login(request):
                 return redirect('/index/')
             else:
                 err_msg = '密码错误'
-                return render(request, 'login/login.html', locals)
+                return render(request, 'login/login.html', locals())
         else:
             return render(request, 'login/login.html', locals())
 

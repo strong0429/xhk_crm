@@ -8,10 +8,7 @@ body {
     width: 100%;
     max-width: 330px;
     padding: 15px;
-    margin: 0 auto;
-  }
-  .form-login{
-    margin-top:80px;
+    margin: 180px auto;
     font-weight: 400;
   }
   .form-login .form-control {
