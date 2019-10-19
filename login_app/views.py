@@ -11,6 +11,9 @@ def index(request):
     return render(request, 'login/index.html')
 
 def login(request):
+    if request.session.get('is_login', None):
+        return redirect('/index/')
+
     if request.method == 'POST':
         err_msg = '请输入完整的信息'
         login_form = forms.UserForm(request.POST)
@@ -23,6 +26,9 @@ def login(request):
                 err_msg = '用户不存在'
                 return render(request, 'login/login.html', locals())
             if user.password == password:
+                request.session['is_login'] = True
+                request.session['user_id'] = user.id 
+                request.session['user_name'] = user.name
                 return redirect('/index/')
             else:
                 err_msg = '密码错误'
@@ -38,5 +44,7 @@ def register(request):
     return render(request, 'login/register.html')
 
 def logout(request):
-    pass
+    if not request.session.get('is_login', None):
+        return redirect('/login/')
+    request.session.flush()
     return redirect('/login/')
