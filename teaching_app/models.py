@@ -1,34 +1,6 @@
 from django.db import models
 
 # Create your models here.
-# 校区信息表
-class Campus(models.Model):
-    class Meta:
-        db_table = 'campus'
-
-    id_cam = models.AutoField(primary_key=True)         # 校区索引id
-    name_cam = models.CharField('名字', max_length=32)          # 校区名字
-    address_cam = models.CharField('地址', max_length=64)       # 校区地址
-    phone_cam = models.CharField('电话', max_length=16)         # 校区联系电话
-    supervisor_cam = models.ForeignKey('Employee', on_delete=models.PROTECT, \
-        null=True, blank=True, verbose_name='主管')      # 校区负责人
-    comment_cam = models.CharField('备注', max_length=256, null=True, blank=True)   # 备注信息
-
-    def __str__(self):
-        return f'{self.name_cam}, Tel: {self.phone_cam}'
-
-# 校区教室信息表
-class Classroom(models.Model):
-    class Meta:
-        db_table = 'classroom'
-
-    id_room = models.AutoField(primary_key=True)        # 教室索引id
-    name_room = models.CharField(max_length=32)         # 教室名字
-    campus_room = models.ForeignKey(Campus, on_delete=models.CASCADE)           # 教室所在校区
-    warden_room = models.ForeignKey('Employee', on_delete=models.PROTECT, blank=True)         # 教室管理员
-    content_room = models.SmallIntegerField()           # 教室的座位容量
-    state_room = models.BooleanField()                  # 教室状态：是否可用
-    comment_room = models.CharField(max_length=64, null=True)   # 备注信息
 
 # 课程类别信息表
 class CourseCategory(models.Model):
@@ -56,49 +28,6 @@ class Lessons(models.Model):
     comment_les = models.CharField(max_length=64, null=True)    # 备注信息
 
 '''
-# 职位信息表
-class Positions(models.Model):
-    code_pos = models.CharField(max_length=8, primary_key=True)
-    name_pos = models.CharField(max_length=32, unique=True)
-    duty_pos = models.CharField(max_length=64)
-
-    class Meta:
-        db_table = 'positions'
-'''
-
-# 部门信息表
-class Departments(models.Model):
-    code_dep = models.CharField('代码', max_length=8, primary_key=True)
-    name_dep = models.CharField('名字', max_length=16, unique=True)
-    supervisor_dep = models.ForeignKey('Employee', on_delete=models.PROTECT, \
-        null=True, blank=True, verbose_name='主管')
-    superior_dep = models.CharField('上级部门', max_length=8, null=True, blank=True)
-    duty_dep = models.CharField('职责', max_length=128)
-
-    class Meta:
-        db_table = 'departments'
-
-# 员工信息表
-class Employee(models.Model):
-    id_emp = models.AutoField(primary_key=True)
-    name_emp = models.CharField(max_length=32)
-    id_num_emp = models.CharField(max_length=18, unique=True)
-    tel_num_emp = models.CharField(max_length=12, unique=True)
-    supervisor_emp = models.IntegerField()
-    entry_date_emp = models.DateField()
-    ecp_emp = models.CharField(max_length=16, null=True)
-    ecpt_emp = models.CharField(max_length=12, null=True)
-    email_emp = models.EmailField(blank=True)
-    wechat_emp = models.CharField(max_length=64, null=True)
-    address_emp = models.CharField(max_length=128, null=True)
-
-    # position = models.ForeignKey('Positions', on_delete=models.CASCADE)
-    department = models.ForeignKey('Departments', on_delete=models.CASCADE)
-    comment_emp = models.CharField(max_length=64, null=True)
-
-    class Meta:
-        db_table = 'employee'
-
 # 班级信息表
 class Classes(models.Model):
     WEEK_DAY = (
@@ -160,6 +89,6 @@ class Students(models.Model):
     state_stu = models.CharField(max_length=1, choices=STU_STATE)
 
     comment_stu = models.CharField(max_length=256, null=True)
-
+'''
 
 
