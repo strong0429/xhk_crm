@@ -21,11 +21,12 @@ class User(models.Model):
         return self.name
 
     class Meta:
-        db_table = 'users'
+        db_table = 'app_user'
 
         ordering = ['c_time']
-        #verbose_name = '用户'
-        #verbose_name_plural = '用户'
+        # verbose_name = '用户'
+        # verbose_name_plural = '用户'
+
 '''
 class ConfirmString(models.Model):
     code = models.CharField(max_length=256)

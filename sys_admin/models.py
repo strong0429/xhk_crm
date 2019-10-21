@@ -20,7 +20,7 @@ class Employee(models.Model):
         return self.name
 
     class Meta:
-        db_table = 'employee'
+        db_table = 'app_employee'
 
 
 # 部门信息表
@@ -29,13 +29,13 @@ class Department(models.Model):
     superior = models.ForeignKey('self', models.SET_NULL, null=True, blank=True)
     director = models.ForeignKey('Employee', models.SET_NULL, null=True, blank=True, \
         related_name='director')
-    duty = models.CharField('备注', max_length=256)
+    duty = models.CharField('职责', max_length=256)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        db_table = 'department'
+        db_table = 'app_department'
 
 
 #校区信息表
@@ -51,7 +51,7 @@ class Campus(models.Model):
         return self.name
     
     class Meta:
-        db_table = 'campus'
+        db_table = 'app_campus'
 
 
 # 教室信息表
@@ -67,5 +67,5 @@ class Classroom(models.Model):
         return self.name
     
     class Meta:
-        db_table = 'classroom'
+        db_table = 'app_classroom'
 

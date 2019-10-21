@@ -90,5 +90,3 @@ class Students(models.Model):
 
     comment_stu = models.CharField(max_length=256, null=True)
 '''
-
-
