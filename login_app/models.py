@@ -11,7 +11,7 @@ class User(models.Model):
     mobile = models.CharField('手机', max_length=12, unique=True)
     address = models.CharField('住址', max_length=128, null=True, blank=True)
     wechat = models.CharField('微信', max_length=128, null=True, blank=True)
-    emial = models.EmailField('邮箱', null=True, blank=True)
+    email = models.EmailField('邮箱', null=True, blank=True)
     hobby = models.CharField('爱好', max_length=256, null=True, blank=True)
     active = models.BooleanField('状态', default='True')
     c_time = models.DateTimeField('注册日期', auto_now_add=True)
