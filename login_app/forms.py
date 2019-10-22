@@ -11,7 +11,7 @@ class UserForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
-    employee = forms.CharField(label='工号', max_length=8, \
+    employee = forms.CharField(label='工号', max_length=8, required=False,\
         widget=forms.TextInput(attrs={'class': 'form-control'}))
     username = forms.CharField(label='用户名', max_length=128, \
         widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -27,6 +27,6 @@ class RegisterForm(forms.Form):
     wechat = forms.CharField(label='微信', max_length=128, \
         widget=forms.TextInput(attrs={'class': 'form-control'}))
     hobby = forms.CharField(label='爱好', max_length=256, \
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
+        widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'False'}))
 
     captcha = CaptchaField(label='验证码')

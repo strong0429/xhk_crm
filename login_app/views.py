@@ -7,14 +7,6 @@ from . import forms
 # Create your views here.
 
 def index(request):
-    if request.session.get('is_login', None):
-        return redirect('/index/')
-    
-    if request.method == 'POST':
-        err_msg = '请输入完整的信息'
-        register_form = forms.RegisterForm(request.POST)
-        if not register_form.is_valid():
-            
     return render(request, 'login/index.html')
 
 def login(request):
@@ -47,8 +39,14 @@ def login(request):
     return render(request, 'login/login.html', locals())
 
 def register(request):
-    pass
-    return render(request, 'login/register.html')
+    if request.session.get('is_login', None):
+        return redirect('/index/')
+    
+    if request.method == 'POST':
+        pass
+
+    register_form = forms.RegisterForm()
+    return render(request, 'login/register.html', locals())
 
 def logout(request):
     if not request.session.get('is_login', None):
