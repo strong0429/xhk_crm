@@ -1,14 +1,37 @@
 .form-register {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 15px;
     margin: 0 auto;
   }
-  .form-group {
-    margin-bottom: 5px;
+
+  .row {
+    margin-bottom: 15px;
   }
+
   form a{
     display: inline-block;
     margin-top:25px;
+    margin-left:50px;
     line-height: 10px;
+  }
+
+  .col-md-3 {
+    text-align: right;
+  }
+
+  .col-md-3 label {
+    display: inline-block;
+    margin-top: 10px;
+    /*font-weight: bolder;*/
+  }
+
+  h3 {
+    margin: 50px auto;
+  }
+
+  .star {
+    color: red;
+    font-size: 22;
+    font-weight: bolder;
   }
