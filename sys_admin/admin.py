@@ -4,6 +4,14 @@ from .models import *
 
 # Register your models here.
 @admin.register(Department)
-class DepartmentAdimn(admin.ModelAdmin):
+class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'superior', 'director', 'duty')
     list_editable = ['superior', 'director']
+
+@admin.register(Campus)
+class CampusAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Employee)
+class Employee(admin.ModelAdmin):
+    list_display = ('id', 'name', 'department')
