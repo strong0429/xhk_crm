@@ -92,6 +92,7 @@ def register(request):
             return render(request, 'login/register.html', locals())
 
     register_form = forms.RegisterForm()
+    no_star = ['住址', '邮箱', '微信', '爱好']
     return render(request, 'login/register.html', locals())
 
 def logout(request):
