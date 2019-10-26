@@ -36,7 +36,8 @@ def login(request):
         else:
             return render(request, 'login/login.html', locals())
 
-    login_form = forms.UserForm()
+    user_name = request.session.get('reg_user_name', '')
+    login_form = forms.UserForm(initial={'username': user_name})
     return render(request, 'login/login.html', locals())
 
 def register(request):
