@@ -76,15 +76,20 @@ def register(request):
         new_user = User()
         new_user.name = username
         new_user.password = password
-        new_user.employee = employee_id
+        new_user.employee = employee
         new_user.mobile = register_form.cleaned_data.get('mobile')
         new_user.email = register_form.cleaned_data.get('email')
         new_user.wechat = register_form.cleaned_data.get('wechat')
         new_user.address = register_form.cleaned_data.get('address')
         new_user.hobby = register_form.cleaned_data.get('hobby')
 
-        new_user.save()
-        return redirect('/login/')
+        try:
+            new_user.save()
+            request.session['reg_user_name'] = new_user.name
+            return redirect('/login/')
+        except:
+            err_msg = '注册失败'
+            return render(request, 'login/register.html', locals())
 
     register_form = forms.RegisterForm()
     return render(request, 'login/register.html', locals())
