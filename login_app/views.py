@@ -7,12 +7,9 @@ from . import forms
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'login/index.html')
-
 def login(request):
     if request.session.get('is_login', None):
-        return redirect('/index/')
+        return redirect('../../index')
 
     if request.method == 'POST':
         err_msg = '请输入完整的信息'
@@ -29,7 +26,7 @@ def login(request):
                 request.session['is_login'] = True
                 request.session['user_id'] = user.id 
                 request.session['user_name'] = user.name
-                return redirect('/index/')
+                return redirect('../../index/')
             else:
                 err_msg = '密码错误'
                 return render(request, 'login/login.html', locals())
