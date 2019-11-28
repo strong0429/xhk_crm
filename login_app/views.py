@@ -9,7 +9,7 @@ from . import forms
 
 def login(request):
     if request.session.get('is_login', None):
-        return redirect('../../index')
+        return redirect('/index/')
 
     if request.method == 'POST':
         err_msg = '请输入完整的信息'
@@ -23,10 +23,12 @@ def login(request):
                 err_msg = '用户不存在'
                 return render(request, 'login/login.html', locals())
             if user.password == password:
+                request.session.set_expiry(0)
                 request.session['is_login'] = True
                 request.session['user_id'] = user.id 
                 request.session['user_name'] = user.name
-                return redirect('../../index/')
+                #return redirect('/index/')
+                return redirect('/sys_admin/campus/')
             else:
                 err_msg = '密码错误'
                 return render(request, 'login/login.html', locals())
@@ -96,5 +98,6 @@ def register(request):
 def logout(request):
     if not request.session.get('is_login', None):
         return redirect('/login/')
+
     request.session.flush()
     return redirect('/login/')

@@ -13,5 +13,5 @@ class CampusAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Employee)
-class Employee(admin.ModelAdmin):
+class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'department')
