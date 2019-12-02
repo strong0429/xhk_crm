@@ -23,6 +23,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('index/', views.index, name='index'),
     path('authen/', include('login_app.urls')),
     path('captcha/', include('captcha.urls')),
     path('sys_admin/', include('sys_admin.urls')),

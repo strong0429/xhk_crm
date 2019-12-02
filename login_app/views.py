@@ -27,8 +27,7 @@ def login(request):
                 request.session['is_login'] = True
                 request.session['user_id'] = user.id 
                 request.session['user_name'] = user.name
-                #return redirect('/index/')
-                return redirect('/sys_admin/campus/')
+                return redirect('/index/')
             else:
                 err_msg = '密码错误'
                 return render(request, 'login/login.html', locals())
@@ -86,7 +85,7 @@ def register(request):
         try:
             new_user.save()
             request.session['reg_user_name'] = new_user.name
-            return redirect('/login/')
+            return redirect('../login/')
         except:
             err_msg = '注册失败'
             return render(request, 'login/register.html', locals())

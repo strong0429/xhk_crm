@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'login_app',
     'sys_admin',
     'teaching_app',
+    'web_crm',
     'captcha',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -14,7 +14,7 @@
 <body>
   <div class="container">
     <div class="col">
-      <form class="form-login" action="../login/" method="post">
+      <form class="form-login" action="{% url 'login' %}" method="post">
         {% if login_form.captcha.errors %}
         <div class='alert alert-warning'>{{ login_form.captcha.errors }}</div>
         {% elif err_msg %}
@@ -32,7 +32,7 @@
         {% endfor %}
 
         <div>
-          <a href="../register" class="text-success "><ins>新用户注册</ins></a>
+          <a href="{% url 'register' %}" class="text-success "><ins>新用户注册</ins></a>
           <button type="submit" class="btn btn-primary float-right">登录</button>
         </div>
       </form>

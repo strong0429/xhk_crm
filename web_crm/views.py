@@ -8,4 +8,4 @@ def index(request):
         
     request.session.set_expiry(0)
     userName = request.session.get('user_name', 'guest')
-    return HttpResponse("Hello, %s!" % userName)
+    return render(request, 'main/index.html', None)
